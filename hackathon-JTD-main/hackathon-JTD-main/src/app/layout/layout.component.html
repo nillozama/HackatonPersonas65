@@ -1,0 +1,96 @@
+<main class="bg-dark vh-100 w-100"> 
+
+    <div class="cube-panel p-2">
+        <div class="i-top d-flex justify-content-center align-items-stretch">
+            <div class="point-of-view-panel p-4 d-flex justify-content-center align-items-center">
+                <ul class="list-group ">
+                    <li class="list-group-item" (click)="show('front')">Resumen</li>
+                    <li class="list-group-item map-option" (click)="show('right')">Mapa</li>
+                    <li class="list-group-item" (click)="show('left')">Grafico 1</li>
+                    <li class="list-group-item" (click)="show('top')">Grafico 2</li>
+                    <li class="list-group-item" (click)="show('bottom')">Grafico 3</li>
+                    <!-- <li class="list-group-item" (click)="show('back')">Tabla</li> -->
+                </ul>
+            </div>
+            <div class="scene">
+                <div class="cube" id="cube" [ngClass]="'show-'+side">
+                    <div class="cube_face cube_front h-100 d-flex justify-content-center align-items-center overflow-auto bg-light" >
+                        
+                        <div class="">
+                            <h4 class="text-center mb-4">Personas que viven solas en Barcelona</h4> 
+                            <app-resumen [range]="members"></app-resumen> 
+                        </div>                 
+                    
+                    </div>
+                    <div class="cube_face cube_right bg-light ">
+                        <div class="h-100 overflow-auto">
+                            <app-map></app-map>
+                        </div>
+                        
+                    </div>
+                    <div class="cube_face cube_left  bg-light">
+                        <div class="h-100 overflow-auto">
+                            <app-bar-chart [range]="members"></app-bar-chart> 
+                        </div> 
+                        
+                    </div>
+                    <div class="cube_face cube_top bg-light">
+                        <div class="h-100 overflow-auto">
+                            <app-bar-chart2 [range]="members"></app-bar-chart2>
+                        </div>                         
+                    </div>
+                    <div class="cube_face cube_bottom bg-light">
+                        <div class="h-100 overflow-auto">
+                            <app-pie-chart [range]="members"></app-pie-chart>
+                        </div> 
+                    </div>
+                    <div class="cube_face cube_back overflow-auto bg-light">
+                        <div class="bg-light p-4 h-100 ">
+                            <h4 class="text-center">
+                                Taula de dades
+                            </h4>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                      <th scope="col">Barrio</th>
+                                      <th scope="col">T.Superiores</th>
+                                      <th scope="col">Parados</th>
+                                      <th scope="col">Renta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                      <td >1</td>
+                                      <td>Mark</td>
+                                      <td>Otto</td>                                         
+                                    </tr>
+                                    <tr>
+                                      <td scope="row">2</td>
+                                      <td>Jacob</td>
+                                      <td>Thornton</td>                                         
+                                    </tr>
+                                    <tr>
+                                      <td scope="row">3</td>
+                                      <td>Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="variables-panel p-4 d-flex justify-content-center align-items-center flex-column">
+                <h5 class="text-light">SORT</h5>
+                <ul class="list-group ">
+                    <li class="list-group-item" (click)="setSort(0)"><i class="bi bi-chevron-double-up"></i></li>
+                    <li class="list-group-item" (click)="setSort(1)"><i class="bi bi-chevron-double-down"></i></li>                    
+                </ul>                 
+            </div>
+        </div>                    
+    </div>
+    <div class="range-panel text-center pt-0" style="max-width: 500px; margin: 0 auto;">
+        <label for="" id="resultRange"></label><br>
+        <input type="range" id="rangeCommand" class="form-range" min="2" max="79" step="1" [value]="members" (change)="setRange($event)">
+    </div>      
+</main>
